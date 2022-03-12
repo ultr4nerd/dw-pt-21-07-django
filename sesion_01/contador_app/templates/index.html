@@ -1,0 +1,27 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">
+            Hola mundo
+        </h1>
+        <p class="subtitle">
+            Tu número aleatorio es <strong>{{ mi_numero }}</strong>!
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="subtitle is-4">Lista de compras</h2>
+        <div class="content">
+            <ul>
+                {% for item in lista_compras %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock content %}
