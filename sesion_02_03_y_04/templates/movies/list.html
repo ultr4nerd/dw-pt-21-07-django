@@ -1,6 +1,7 @@
 {% extends '_base.html' %}
 
 {% block content %}
+{% include '_navbar.html' %}
 <section class="section">
   <div class="container">
     <h1 class="title">
@@ -11,8 +12,13 @@
       <ul>
         {% for movie in movies %}
         <li>
-          <a href="{% url 'movies:retrieve' movie.pk %}">{{ movie.name }}</a>
-          de {{ movie.director.full_name }}
+          {{ movie.name }} de {{ movie.director.full_name }}
+          <br>
+          <a href="{% url 'movies:retrieve' movie.pk %}">Detalle</a>
+          {% if not movie.reviewed %}
+          |
+          <a href="{% url 'reviews:create' movie.pk %}">Reseñar</a> 
+          {% endif %}
         </li>
         {% endfor %}
       </ul>

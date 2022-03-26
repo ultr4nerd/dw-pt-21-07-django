@@ -2,6 +2,8 @@
 
 from django.db import models
 
+from reviews.models import Review
+
 
 class Movie(models.Model):
     """Movie model for movies app"""
@@ -13,6 +15,9 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.name
+
+    def has_user_review(self, user):
+        return Review.objects.filter(movie=self, user=user).exists()
 
 
 class Director(models.Model):
