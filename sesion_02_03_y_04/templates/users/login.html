@@ -5,11 +5,11 @@
   <div class="container">
     <h1 class="title">Iniciar sesión</h1>
 
-    {% if error %}
+    {% for error in form.non_field_errors %}
     <div class="notification is-danger is-light">
       {{ error }}
     </div>
-    {% endif %}
+    {% endfor %}
 
     <form action="{% url 'users:login' %}" method="post">
       {% csrf_token %}
