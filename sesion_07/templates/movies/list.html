@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+
+{% block content %}
+{% include '_navbar.html' %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Lista de películas
+    </h1>
+
+    <div class="content">
+      <ul>
+        {% for movie in movies %}
+        <li>
+          {{ movie.name }} de {{ movie.director.full_name }}
+          <br>
+          <a href="{% url 'movies:retrieve' movie.pk %}">Detalle</a>
+          {% if not movie.reviewed %}
+          |
+          <a href="{% url 'reviews:create' movie.pk %}">Reseñar</a> 
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock content %}

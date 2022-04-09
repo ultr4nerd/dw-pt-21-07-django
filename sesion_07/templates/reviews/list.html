@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+
+{% block content %}
+{% include '_navbar.html' %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Lista de reseñas
+    </h1>
+
+    <div class="content">
+      <ul>
+        {% for review in reviews %}
+        <li>
+          {{ review.movie.name }} de {{ review.movie.director.full_name }} | {{ review.stars }} estrella(s)
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock content %}
