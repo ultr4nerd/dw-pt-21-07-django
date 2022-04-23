@@ -1,0 +1,39 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block meta %}
+<link rel="stylesheet" href="{% static 'css/map.css' %}">
+{% endblock meta %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Mi dirección</h1>
+    {% if not request.user.address %}
+    <p class="is-danger">No has registrado una dirección</p>
+    <a href="{% url 'locations:create' %}">Crear ahora</a>
+    {% else %}
+    <div id="map"></div>
+    <a type="button" href="{% url 'locations:delete' %}" class="button is-danger is-light mt-3">Eliminar dirección</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+{% if request.user.address %}
+  const address = {
+    lat: {{ request.user.address.latitude }},
+    lng: {{ request.user.address.longitude }},
+  }
+{% else %}
+  const address = null
+{% endif %}
+</script>
+<script src="{% static 'js/showAddress.js' %}"></script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkGw4ENpHr7pejus_3-NnuxU3TxspkDt0&libraries=places&callback=createMap">
+</script>
+{% endblock scripts %}
+

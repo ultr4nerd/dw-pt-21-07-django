@@ -1,0 +1,45 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block meta %}
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkGw4ENpHr7pejus_3-NnuxU3TxspkDt0&libraries=places&callback=startAutocomplete">
+</script>
+<link rel="stylesheet" href="{% static 'css/map.css' %}">
+{% endblock meta %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Crear dirección de usuario</h1>
+
+    <div class="field">
+      <label for="autocomplete-id" class="label">Ingrese dirección:</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Lomas de Chapultepec 33..." id="autocomplete-id">
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <form method="post" id="hidden-form">
+      {% csrf_token %}
+      <input type="hidden" name="street" id="street-id" />
+      <input type="hidden" name="number" id="number-id" />
+      <input type="hidden" name="zip_code" id="zip-code-id" />
+      <input type="hidden" name="suburb" id="suburb-id" />
+      <input type="hidden" name="city" id="city-id" />
+      <input type="hidden" name="state" id="state-id" />
+      <input type="hidden" name="country" id="country-id" />
+      <input type="hidden" name="latitude" id="latitude-id" />
+      <input type="hidden" name="longitude" id="longitude-id" />
+    </form>
+
+    <button class="button is-link" id="submit-button" disabled>Crear dirección</button>
+  </div>
+</section>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/createAddress.js' %}"></script>
+{% endblock scripts %}

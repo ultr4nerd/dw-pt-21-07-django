@@ -7,11 +7,13 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
+    {% block meta %}{% endblock meta %}
     {% block title %}
     <title>Rotten Tomatoes</title>
     {% endblock title %}
   </head>
   <body>
     {% block content %}{% endblock content %}
+    {% block scripts %}{% endblock scripts %}
   </body>
 </html>
